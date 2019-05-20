@@ -18,6 +18,16 @@ LD_LIBRARY_PATH=./ ./inotifywait  -mrq --timefmt '%d/%m/%y/%H:%M' --format '%T %
 dk@ubuntu:~/inotifywait$ LD_LIBRARY_PATH=./ ./inotifywait  -mrq --timefmt '%d/%m/%y/%H:%M' --format '%T %w %f  %e ' -e modify,delete,create  --exclude '^/dev/|^/run/'   /
 
 
+
+LD_LIBRARY_PATH=./ ./inotifywait  -mrq --timefmt '%d/%m/%y/%H:%M' --format '%T %w %f  %e ' -e modify,delete,create,access,moved,delete,delete_self,unmount  --exclude '^/dev/|^/run/'   /   -o /dev/shm/noitfy.txt &  tail -f /dev/shm/noitfy.txt
+
+
+LD_LIBRARY_PATH=./ ./inotifywait  -mrq --timefmt '%d/%m/%y/%H:%M' --format '%T %w %f  %e ' -e modify,delete,create,attrib,delete_self,unmount  --exclude '^/dev/|^/run/'   /   -o /dev/shm/noitfy.txt &  tail -f /dev/shm/noitfy.txt & tail -f /dev/shm/noitfy.txt
+
+
+
+
+
 sudo mount -t tmpfs shmfs -o size=1500M /dev/shm
 
 
